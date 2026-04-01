@@ -21,24 +21,18 @@ function App() {
           <MatchProvider>
             <Router>
               <div className="app">
+
+                {/* Windows 2000-style nav bar */}
                 <nav className="navbar">
                   <div className="nav-container">
                     <Link to="/" className="nav-brand">
-                      🔥 FF E-Sports
+                      FF E-Sports Tournament Hub
                     </Link>
                     <ul className="nav-menu">
-                      <li>
-                        <Link to="/">Home</Link>
-                      </li>
-                      <li>
-                        <Link to="/tournaments">Tournaments</Link>
-                      </li>
-                      <li>
-                        <Link to="/leaderboard">Leaderboard</Link>
-                      </li>
-                      <li>
-                        <Link to="/admin">Admin</Link>
-                      </li>
+                      <li><Link to="/">🏠 Home</Link></li>
+                      <li><Link to="/tournaments">🏆 Tournaments</Link></li>
+                      <li><Link to="/leaderboard">📊 Leaderboard</Link></li>
+                      <li><Link to="/admin">⚙️ Admin</Link></li>
                     </ul>
                   </div>
                 </nav>
@@ -55,9 +49,15 @@ function App() {
                   </Routes>
                 </main>
 
+                {/* Windows 2000-style taskbar/footer */}
                 <footer className="footer">
-                  <p>&copy; 2026 Free Fire E-Sports. All rights reserved.</p>
+                  <span>© 2026 Free Fire E-Sports</span>
+                  &nbsp;|&nbsp;
+                  <span>All rights reserved.</span>
+                  &nbsp;|&nbsp;
+                  <span style={{ color: 'var(--win-darker-gray)' }}>Microsoft Windows 2000 Edition™</span>
                 </footer>
+
               </div>
             </Router>
           </MatchProvider>
