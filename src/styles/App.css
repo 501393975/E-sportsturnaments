@@ -1,20 +1,10 @@
-/* App.jsx specific styles */
+/* App.jsx specific styles — Windows 2000 theme */
+/* The main hero-section styles are now in Dashboard.css */
+/* This file handles global app chrome overrides if needed */
 
-.hero-section {
-  text-align: center;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  color: white;
-  padding: 3rem;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-}
-
-.hero-section h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.hero-section p {
-  font-size: 1.2rem;
-  opacity: 0.95;
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--win-desktop-bg);
 }

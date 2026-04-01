@@ -1,3 +1,5 @@
+/* Windows 2000 / Microsoft 2000 Style Reset & Base */
+
 * {
   margin: 0;
   padding: 0;
@@ -5,24 +7,36 @@
 }
 
 :root {
-  --primary-color: #ff6b35;
-  --secondary-color: #004e89;
-  --success-color: #06d6a0;
-  --danger-color: #ef476f;
-  --warning-color: #ffd166;
-  --dark-bg: #0a0e27;
-  --light-bg: #f7f9fc;
-  --text-primary: #1a1a1a;
-  --text-secondary: #666;
-  --border-color: #e0e0e0;
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --win-gray: #d4d0c8;
+  --win-dark-gray: #808080;
+  --win-darker-gray: #404040;
+  --win-white: #ffffff;
+  --win-black: #000000;
+  --win-titlebar-start: #000080;
+  --win-titlebar-end: #1084d0;
+  --win-titlebar-inactive: #808080;
+  --win-blue: #000080;
+  --win-highlight: #0000ff;
+  --win-highlight-text: #ffffff;
+  --win-desktop-bg: #008080;
+  --win-button-face: #d4d0c8;
+  --win-button-shadow: #808080;
+  --win-button-dark-shadow: #404040;
+  --win-button-light: #ffffff;
+  --win-button-highlight: #e0ddd5;
+  --win-border-raised-outer: #ffffff #808080 #808080 #ffffff;
+  --win-inset-bg: #ffffff;
+  --win-link: #000080;
+  --win-link-hover: #0000ee;
+  --shadow: 2px 2px 0 #808080;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--light-bg);
-  color: var(--text-primary);
-  line-height: 1.6;
+  font-family: 'Tahoma', 'MS Sans Serif', Arial, sans-serif;
+  background-color: var(--win-desktop-bg);
+  color: var(--win-black);
+  font-size: 11px;
+  line-height: 1.4;
 }
 
 .app {
@@ -31,200 +45,251 @@ body {
   min-height: 100vh;
 }
 
-/* NAVBAR */
+/* ============================
+   NAVBAR — Windows 2000 Menu Bar
+   ============================ */
 .navbar {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  color: white;
+  background-color: var(--win-gray);
+  border-bottom: 2px solid var(--win-dark-gray);
   padding: 0;
-  box-shadow: var(--shadow);
+  box-shadow: 0 2px 0 var(--win-darker-gray);
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
 .nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem 2rem;
+  max-width: 100%;
+  padding: 0;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
 }
 
+/* Title Bar */
 .nav-brand {
-  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
   font-weight: bold;
   text-decoration: none;
-  color: white;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  color: var(--win-white);
+  background: linear-gradient(to right, var(--win-titlebar-start), var(--win-titlebar-end));
+  padding: 4px 8px;
+  user-select: none;
 }
 
+.nav-brand::before {
+  content: '🏆';
+  font-size: 14px;
+}
+
+/* Menu bar row */
 .nav-menu {
   list-style: none;
   display: flex;
-  gap: 2rem;
+  gap: 0;
+  background-color: var(--win-gray);
+  padding: 2px 4px;
+  border-top: 1px solid var(--win-white);
 }
 
-.nav-menu a {
-  color: white;
+.nav-menu li a {
+  color: var(--win-black);
   text-decoration: none;
-  font-weight: 500;
-  transition: opacity 0.3s;
+  font-size: 11px;
+  font-family: 'Tahoma', Arial, sans-serif;
+  padding: 3px 8px;
+  display: inline-block;
 }
 
-.nav-menu a:hover {
-  opacity: 0.8;
+.nav-menu li a:hover {
+  background-color: var(--win-titlebar-start);
+  color: var(--win-white);
 }
 
 /* MAIN CONTENT */
 .main-content {
   flex: 1;
-  max-width: 1200px;
+  max-width: 1100px;
   width: 100%;
-  margin: 0 auto;
-  padding: 2rem;
-  animation: fadeIn 0.3s ease-in;
+  margin: 16px auto;
+  padding: 0 12px;
+  animation: none;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* FOOTER */
+/* FOOTER — Windows Taskbar */
 .footer {
-  background-color: var(--secondary-color);
-  color: white;
+  background-color: var(--win-gray);
+  color: var(--win-black);
   text-align: center;
-  padding: 2rem;
-  margin-top: auto;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-family: 'Tahoma', Arial, sans-serif;
+  border-top: 2px solid var(--win-white);
+  box-shadow: inset 0 1px 0 var(--win-white);
 }
 
-/* BUTTONS */
-.btn-primary {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 0.6rem 1.5rem;
-  border-radius: 4px;
+/* ============================
+   WIN2K WINDOW CHROME MIXIN
+   ============================ */
+.win-window {
+  background-color: var(--win-gray);
+  border: 2px solid;
+  border-color: var(--win-white) var(--win-dark-gray) var(--win-dark-gray) var(--win-white);
+  box-shadow: 1px 1px 0 var(--win-darker-gray);
+  margin-bottom: 12px;
+}
+
+.win-titlebar {
+  background: linear-gradient(to right, var(--win-titlebar-start), var(--win-titlebar-end));
+  color: var(--win-white);
+  font-weight: bold;
+  font-size: 11px;
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+}
+
+.win-titlebar-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.win-titlebar-btns {
+  margin-left: auto;
+  display: flex;
+  gap: 2px;
+}
+
+.win-titlebar-btn {
+  width: 16px;
+  height: 14px;
+  background-color: var(--win-gray);
+  border: 1px solid;
+  border-color: var(--win-white) var(--win-dark-gray) var(--win-dark-gray) var(--win-white);
+  font-size: 9px;
+  font-weight: bold;
   cursor: pointer;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--win-black);
+  padding: 0;
+  font-family: 'Marlett', 'Tahoma', Arial, sans-serif;
+  line-height: 1;
 }
 
-.btn-primary:hover {
-  background-color: #e55a2b;
+.win-titlebar-btn:active {
+  border-color: var(--win-dark-gray) var(--win-white) var(--win-white) var(--win-dark-gray);
 }
 
-.btn-secondary {
-  background-color: var(--secondary-color);
-  color: white;
-  border: none;
-  padding: 0.6rem 1.5rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s;
+.win-client-area {
+  padding: 12px;
+  background-color: var(--win-gray);
 }
 
-.btn-secondary:hover {
-  background-color: #003d6b;
-}
-
-.btn-danger {
-  background-color: var(--danger-color);
-  color: white;
-  border: none;
-  padding: 0.6rem 1.5rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s;
-}
-
-.btn-danger:hover {
-  background-color: #e0375c;
-}
-
-.btn-small {
-  padding: 0.4rem 1rem;
-  font-size: 0.9rem;
-}
-
+/* ============================
+   BUTTONS
+   ============================ */
+.btn-primary,
+.btn-secondary,
+.btn-danger,
 .btn-view {
-  background-color: var(--success-color);
-  color: white;
-  border: none;
-  padding: 0.4rem 1rem;
-  border-radius: 4px;
+  background-color: var(--win-button-face);
+  color: var(--win-black);
+  border: 2px solid;
+  border-color: var(--win-white) var(--win-dark-gray) var(--win-dark-gray) var(--win-white);
+  box-shadow: 1px 1px 0 var(--win-darker-gray);
+  padding: 4px 16px;
+  font-family: 'Tahoma', Arial, sans-serif;
+  font-size: 11px;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
-  font-size: 0.9rem;
-  transition: background-color 0.3s;
+  min-width: 75px;
+  text-align: center;
 }
 
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-danger:hover,
 .btn-view:hover {
-  background-color: #05b386;
+  background-color: var(--win-button-highlight);
+}
+
+.btn-primary:active,
+.btn-secondary:active,
+.btn-danger:active,
+.btn-view:active {
+  border-color: var(--win-dark-gray) var(--win-white) var(--win-white) var(--win-dark-gray);
+  box-shadow: none;
+  padding: 5px 15px 3px 17px;
+}
+
+.btn-small {
+  padding: 2px 8px;
+  font-size: 11px;
+  min-width: 50px;
 }
 
 .btn-large {
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
+  padding: 6px 24px;
+  font-size: 13px;
 }
 
-/* FORMS */
+/* ============================
+   FORMS
+   ============================ */
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 10px;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: var(--text-primary);
+  margin-bottom: 3px;
+  font-weight: bold;
+  font-size: 11px;
+  font-family: 'Tahoma', Arial, sans-serif;
+  color: var(--win-black);
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  font-size: 1rem;
-  font-family: inherit;
+  padding: 3px 4px;
+  border: 2px solid;
+  border-color: var(--win-dark-gray) var(--win-white) var(--win-white) var(--win-dark-gray);
+  background-color: var(--win-inset-bg);
+  font-size: 11px;
+  font-family: 'Tahoma', Arial, sans-serif;
+  color: var(--win-black);
+  box-shadow: inset 1px 1px 0 var(--win-darker-gray);
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(255, 107, 53, 0.1);
+  outline: 1px dotted var(--win-black);
 }
 
 .form-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  gap: 8px;
 }
 
 .checkbox-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  gap: 4px;
+  margin-bottom: 4px;
   cursor: pointer;
+  font-size: 11px;
 }
 
 .checkbox-item input {
@@ -232,61 +297,110 @@ body {
   margin: 0;
 }
 
-/* ERROR & EMPTY MESSAGES */
+/* ============================
+   MESSAGES
+   ============================ */
 .error {
-  background-color: #ffe5e5;
-  color: var(--danger-color);
-  padding: 1.5rem;
-  border-radius: 4px;
+  background-color: var(--win-gray);
+  color: var(--win-black);
+  padding: 12px;
+  border: 2px solid;
+  border-color: var(--win-white) var(--win-dark-gray) var(--win-dark-gray) var(--win-white);
+  font-size: 11px;
   text-align: center;
-  font-size: 1.1rem;
 }
 
 .empty-message {
   text-align: center;
-  color: var(--text-secondary);
-  padding: 2rem;
-  background-color: white;
-  border-radius: 4px;
+  color: var(--win-darker-gray);
+  padding: 12px;
+  font-size: 11px;
+  font-style: italic;
 }
 
-/* UTILITY CLASSES */
+/* ============================
+   UTILITY
+   ============================ */
 .page-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 12px;
 }
 
 .page-header h1 {
-  font-size: 2.5rem;
-  color: var(--primary-color);
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--win-black);
+  font-family: 'Tahoma', Arial, sans-serif;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+::-webkit-scrollbar-track {
+  background-color: var(--win-gray);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--win-gray);
+  border: 2px solid;
+  border-color: var(--win-white) var(--win-dark-gray) var(--win-dark-gray) var(--win-white);
+}
+::-webkit-scrollbar-button {
+  background-color: var(--win-gray);
+  border: 2px solid;
+  border-color: var(--win-white) var(--win-dark-gray) var(--win-dark-gray) var(--win-white);
+  width: 16px;
+  height: 16px;
+}
+
+/* Links */
+a {
+  color: var(--win-link);
+  text-decoration: underline;
+}
+a:hover {
+  color: var(--win-link-hover);
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 11px;
+}
+th {
+  background-color: var(--win-gray);
+  border: 1px solid var(--win-dark-gray);
+  padding: 4px 8px;
+  font-weight: bold;
+  text-align: left;
+}
+td {
+  border: 1px solid var(--win-dark-gray);
+  padding: 3px 8px;
+  background-color: var(--win-white);
+}
+tr:nth-child(even) td {
+  background-color: #eef0ee;
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  .nav-container {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
   .nav-menu {
-    flex-direction: column;
-    gap: 0.5rem;
-    width: 100%;
+    flex-wrap: wrap;
   }
-
-  .page-header {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: flex-start;
-  }
-
   .main-content {
-    padding: 1rem;
+    padding: 0 6px;
   }
-
   .form-row {
     grid-template-columns: 1fr;
+  }
+  .page-header {
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
   }
 }
